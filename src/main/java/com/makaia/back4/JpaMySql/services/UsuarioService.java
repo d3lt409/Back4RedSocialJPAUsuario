@@ -5,7 +5,7 @@ import com.makaia.back4.JpaMySql.dtos.CrearUsuarioDTO;
 import com.makaia.back4.JpaMySql.entities.Publicacion;
 import com.makaia.back4.JpaMySql.entities.Usuario;
 import com.makaia.back4.JpaMySql.exceptions.RedSocialApiException;
-import com.makaia.back4.JpaMySql.publisher.Publisher;
+// import com.makaia.back4.JpaMySql.publisher.Publisher;
 import com.makaia.back4.JpaMySql.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,12 +21,14 @@ import java.util.stream.StreamSupport;
 public class UsuarioService {
     UsuarioRepository repository;
 
-    Publisher publisher;
+    // Publisher publisher;
 
     @Autowired
-    public UsuarioService(UsuarioRepository repository, Publisher publisher) {
+    public UsuarioService(UsuarioRepository repository
+    // , Publisher publisher
+    ) {
         this.repository = repository;
-        this.publisher = publisher;
+        // this.publisher = publisher;
     }
 
     public Usuario crear(CrearUsuarioDTO dto) {
@@ -39,14 +41,14 @@ public class UsuarioService {
 
         System.out.println(nuevoUsuario);
 
-        crearPublicacionPorDefecto(nuevoUsuario.getId());
+        // crearPublicacionPorDefecto(nuevoUsuario.getId());
 
         return nuevoUsuario;
     }
 
-    private void crearPublicacionPorDefecto(Long userId) {
-        this.publisher.send(userId);
-    }
+    // private void crearPublicacionPorDefecto(Long userId) {
+    //     this.publisher.send(userId);
+    // }
 
     private Publicacion crearPublicacionPorDefectoOld(Long userId) {
         RestTemplate template = new RestTemplate();
